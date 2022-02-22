@@ -8,10 +8,10 @@
   let speech = 1;
   let lineI = 0;
   let wordI = 0;
-  let hintsAreOn = true;
+  let hintsAreOn = false;
 
   let wordStatusStore = dialogue.map((line) =>
-    line[1].split(" ").map(_ => true)
+    line[1].split(" ").map((_) => true)
   );
 
   function toggleWord(i, j) {
@@ -20,15 +20,38 @@
     wordStatusStore[lineI][wordI] = !wordStatusStore[lineI][wordI];
   }
 
-  function toggleThreeWords() {
-    wordStatusStore[lineI][wordI] = !wordStatusStore[lineI][wordI];
-    if (wordI + 1 < wordStatusStore[lineI].length) {
-      wordStatusStore[lineI][wordI + 1] = wordStatusStore[lineI][wordI];
-    }
-    if (wordI + 2 < wordStatusStore[lineI].length) {
-      wordStatusStore[lineI][wordI + 2] = wordStatusStore[lineI][wordI];
+  function showWord() {
+    wordStatusStore[lineI][wordI] = true
+  }
+
+  function hideWord() {
+    wordStatusStore[lineI][wordI] = false
+  }
+
+  function goToNextWord() {
+    if (wordI < wordStatusStore[lineI].length - 1) {
+      wordI++
     }
   }
+
+  function showThreeWords() {
+    showWord()
+    goToNextWord()
+    showWord()
+    goToNextWord()
+    showWord()
+    goToNextWord()
+  }
+
+  function hideThreeWords() {
+    hideWord()
+    goToNextWord()
+    hideWord()
+    goToNextWord()
+    hideWord()
+    goToNextWord()
+  }
+
 </script>
 
 <div class="p-3">
@@ -38,7 +61,11 @@
       <p class="mb-4">
         <span class="font-bold">{line[speaker]}: </span>
         {#each line[speech].split(" ") as word, j}
-          <span class="cursor-pointer" on:click={(e) => toggleWord(i, j)}
+          <span
+            class={i === lineI && j === wordI
+              ? "border-b-2 border-blue-300 rounded cursor-pointer pb-1"
+              : "cursor-pointer pb-1"}
+            on:click={(e) => toggleWord(i, j)}
             >{wordStatusStore[i][j]
               ? word
               : hintsAreOn
@@ -57,7 +84,10 @@
 </div>
 
 <div class="p-3">
-  <button class="px-3 py-1 bg-green-300" on:click={toggleThreeWords}
-    >Toggle 3</button
+  <button class="px-3 py-1 bg-green-300" on:click={showThreeWords}
+    >+3</button
+  >
+  <button class="px-3 py-1 bg-green-300" on:click={hideThreeWords}
+    >-3</button
   >
 </div>
