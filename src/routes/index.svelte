@@ -1,5 +1,5 @@
 <script>
-  import DialogueTest from "../components/DialogueTest.svelte";
+  import Dialogue from "../components/Dialogue.svelte";
 
   let dialogue = [
     [`John`, `Hello. Can I help you?`],
@@ -65,4 +65,4 @@
   ];
 </script>
 
-<DialogueTest {dialogue} />
+<Dialogue {dialogue} />
