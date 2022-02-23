@@ -147,10 +147,10 @@
     </div>
   </div>
   <div class="p-2 bg-gray-700 text-center">
-    <div>
+    <div class="mb-2">
       <ControlPadButton action={goBack10} label="<<" />
       <ControlPadButton action={goBack1} label="<" />
-      <span>{phraseI+1}/{phraseCount}</span>
+      <span class="text-white">{phraseI+1}/{phraseCount}</span>
       <ControlPadButton action={goForward1} label=">" />
       <ControlPadButton action={goForward10} label=">>" />
     </div>
