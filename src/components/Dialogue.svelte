@@ -117,7 +117,7 @@
       <div class="font-mono leading-7">
         {#each dialogue as line, i}
           <p
-            class="p-2 {speechStatusStore[i] === 'tolearn' && i !== lineI
+            class="px-3 py-2 {speechStatusStore[i] === 'tolearn' && i !== lineI
               ? 'bg-red-100'
               : speechStatusStore[i] === 'learning' &&
                 i !== lineI &&
