@@ -1,4 +1,9 @@
 <script>
+  import Header from "./Header.svelte";
+  import Title from "./Title.svelte";
+  import ControlPadButton from "./ControlPadButton.svelte"
+
+  export let title;
   export let dialogue;
 
   let speaker = 0;
@@ -106,13 +111,9 @@
 
 <div class="flex flex-col h-full">
   <div class="flex-grow overflow-auto">
-    <div class="bg-blue-300 py-1 mb-4">
-      <p class="font-bold text-center">Flippin' English Club</p>
-    </div>
+    <Header/>
     <div>
-      <h1 class="text-xl font-bold mb-3 p-2">
-        Ludwig turns up at the wrong door
-      </h1>
+      <Title {title}/>
       <div class="font-mono leading-7">
         {#each dialogue as line, i}
           <p
@@ -151,25 +152,10 @@
     </div>
   </div>
   <div class="p-2 bg-gray-700 text-center">
-    <button
-      class="w-12 mx-1 py-2 bg-green-300 rounded-md"
-      on:click={showThreeWords}>+3</button
-    >
-    <button
-      class="w-12 mx-1 py-2 bg-green-300 rounded-md"
-      on:click={hideThreeWords}>-3</button
-    >
-    <button
-      class="w-12 mx-1 py-2 bg-green-300 rounded-md"
-      on:click={toggleSpeech}>All</button
-    >
-    <button
-      class="w-12 mx-1 py-2 bg-green-300 rounded-md"
-      on:click={toggleDialogue}>ALL!</button
-    >
-    <button
-      class="w-12 mx-1 py-2 bg-green-300 rounded-md"
-      on:click={toggleHints}>Hints</button
-    >
+    <ControlPadButton action={showThreeWords} label="+3"/>
+    <ControlPadButton action={hideThreeWords} label="-3"/>
+    <ControlPadButton action={toggleSpeech} label="All"/>
+    <ControlPadButton action={toggleDialogue} label="ALL!"/>
+    <ControlPadButton action={toggleHints} label="Hints"/>
   </div>
 </div>
