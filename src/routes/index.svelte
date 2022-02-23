@@ -1,4 +1,9 @@
 <script>
+  import DialogueTest from "../components/DialogueTest.svelte";
+
+  const speechTest =
+    "speechTest: This value is passed from the parent to the child component.";
+
   let dialogue = [
     [`John`, `Hello. Can I help you?`],
     [`Ludwig`, `Are you Bertrand Russell, the greatest thinker of the age?`],
@@ -159,32 +164,38 @@
     lineI = i;
     wordI = 0;
   }
+
+  function toggleHints() {
+    hintsAreOn = !hintsAreOn;
+  }
 </script>
 
 <div class="flex flex-col h-full">
   <div class="flex-grow overflow-auto">
-    <div class="bg-blue-300 py-1">
-      <h1 class="font-bold text-center">Flippin' English Club</h1>
+    <div class="bg-blue-300 py-1 mb-4">
+      <p class="font-bold text-center">Flippin' English Club</p>
     </div>
-    <div class="font-mono leading-loose">
+    <DialogueTest {speechTest} />
+    <h1 class="text-xl font-bold mb-3 p-2">
+      Ludwig turns up at the wrong door
+    </h1>
+    <div class="font-mono leading-7">
       {#each dialogue as line, i}
         <p
-          class={i === lineI
-            ? "p-2 bg-gray-200"
-            : speechStatusStore[i] === "tolearn"
-            ? "p-2 bg-red-100"
-            : speechStatusStore[i] === "learning"
-            ? "p-2 bg-yellow-100"
-            : "p-2"}
+          class="p-2 {speechStatusStore[i] === 'tolearn' && i !== lineI
+            ? 'bg-red-100'
+            : speechStatusStore[i] === 'learning' &&
+              i !== lineI &&
+              'bg-yellow-100'}"
         >
           <span on:click={() => selectLine(i)} class="font-bold cursor-pointer"
             >{line[speaker]}:
           </span>
           {#each line[speech].split(" ") as word, j}
             <span
-              class={i === lineI && j === wordI
-                ? "border-b-2 border-blue-300 rounded cursor-pointer pb-1"
-                : "cursor-pointer pb-1"}
+              class="cursor-pointer py-1 {i === lineI &&
+                j === wordI &&
+                'bg-green-200 rounded-md'}"
               on:click={() => toggleWord(i, j)}
               >{wordStatusStore[i][j]
                 ? word
@@ -203,22 +214,26 @@
     </div>
   </div>
 
-  <div class="px-3 py-2 bg-gray-700">
+  <div class="p-2 bg-gray-700 text-center">
     <button
-      class="mx-1 px-3 py-1 bg-green-300 rounded-md"
+      class="w-12 mx-1 py-2 bg-green-300 rounded-md"
       on:click={showThreeWords}>+3</button
     >
     <button
-      class="mx-1 px-3 py-1 bg-green-300 rounded-md"
+      class="w-12 mx-1 py-2 bg-green-300 rounded-md"
       on:click={hideThreeWords}>-3</button
     >
     <button
-      class="mx-1 px-3 py-1 bg-green-300 rounded-md"
+      class="w-12 mx-1 py-2 bg-green-300 rounded-md"
       on:click={toggleSpeech}>All</button
     >
     <button
-      class="mx-1 px-3 py-1 bg-green-300 rounded-md"
+      class="w-12 mx-1 py-2 bg-green-300 rounded-md"
       on:click={toggleDialogue}>ALL!</button
+    >
+    <button
+      class="w-12 mx-1 py-2 bg-green-300 rounded-md"
+      on:click={toggleHints}>Hints</button
     >
   </div>
 </div>
