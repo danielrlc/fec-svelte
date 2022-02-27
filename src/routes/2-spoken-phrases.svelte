@@ -4,7 +4,7 @@
   const content = {
     title: `#2: Päätimme eilen lähteä...`,
 
-    sourcePhrases: [
+    targetPhrases: [
       `Päätimme eilen lähteä työkavereiden kanssa ulos syömään.`,
       `Minä suosittelin uutta ravintola Koloa, koska olin käynyt siellä kerran lounaalla ja ruoka oli ollut edullista ja tarjoilijat ystävällisiä.`,
       `Pidin myös paikan ajattomasta sisustuksesta ja kiireettömästä tunnelmasta.`,
@@ -57,7 +57,7 @@
       `Ostatko luomuruokaa?`,
     ],
 
-    targetPhrases: [
+    sourcePhrases: [
       `We decided yesterday to go out with some work mates to eat.`,
       `I recommended the new restaurant Koloa because I had visited there once for lunch and the food had been affordable and the waiters friendly.`,
       `I also liked the timeless decor and unhurried atmosphere of the place.`,
