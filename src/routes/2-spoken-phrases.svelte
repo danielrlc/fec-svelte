@@ -1,8 +1,8 @@
 <script>
-  import Flashcards from "../../components/Flashcards.svelte";
+  import Flashcards from "../components/Flashcards.svelte";
 
   const content = {
-    title: `#002: Diego on muuttanut asuntoon`,
+    title: `#2: Diego on muuttanut asuntoon`,
 
     sourcePhrases: [
       `Diego on muuttanut opiskelija-asuntoon Junatielle.`,

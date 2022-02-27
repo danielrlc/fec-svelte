@@ -1,5 +1,5 @@
 <script>
-  import Dialogue from "../../components/Dialogue.svelte";
+  import Dialogue from "../components/Dialogue.svelte";
 
   const content = {
     title: "#1 - Ludwig turns up at the wrong door",

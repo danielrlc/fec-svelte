@@ -114,7 +114,7 @@
     <Header/>
     <div>
       <Title {title}/>
-      <div class="font-mono leading-7">
+      <div class="leading-6">
         {#each dialogue as line, i}
           <p
             class="px-3 py-2 {speechStatusStore[i] === 'tolearn' && i !== lineI

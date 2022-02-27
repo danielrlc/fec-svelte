@@ -16,5 +16,5 @@
 <Header />
 
 {#each pages as { title, slug }}
-  <a class="block underline px-3 mb-4" href="/ex/{slug}">{title}</a>
+  <a class="block underline px-3 mb-4" href={slug}>{title}</a>
 {/each}
