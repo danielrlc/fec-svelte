@@ -10,7 +10,7 @@
   let phraseI = 0;
   let wordI = 0;
   let hintsAreOn = false;
-  let phraseCount = sourcePhrases.length
+  let phraseCount = sourcePhrases.length;
 
   let wordStatusStore = targetPhrases.map((phrase) =>
     phrase.split(" ").map((_) => false)
@@ -71,41 +71,60 @@
 
   function goForward1() {
     phraseI = Math.min(phraseI + 1, phraseCount - 1);
+    wordI = 0;
   }
 
-  $: progress = Math.round((phraseStatusStore
-      .filter(phrase => phrase === 'learnt').length / phraseCount) * 100)
+  $: progress = Math.round(
+    (phraseStatusStore.filter((phrase) => phrase === "learnt").length /
+      phraseCount) *
+      100
+  );
+
+  let introIsShown = true;
+  let flashcardsAreShown = false;
+
+  function endIntro() {
+    introIsShown = false;
+    flashcardsAreShown = true;
+  }
 </script>
 
 <div class="flex flex-col h-full">
   <div class="flex-grow overflow-auto">
-    <Header />
-    <div>
+    {#if introIsShown}
+      <Header />
       <Title {title} />
-      <p class="px-3 mb-4">{sourcePhrases[phraseI]}</p>
-      <hr class="mb-4">
-      <div class="px-3 leading-7">
-        {#each targetPhrases[phraseI].split(" ") as word, i}
-          <span
-            class="cursor-pointer py-1 {i === wordI &&
-              'bg-green-200 rounded-md'}"
-            on:click={() => toggleWord(i)}
-            >{wordStatusStore[phraseI][i]
-              ? word
-              : hintsAreOn
-              ? word
-                  .split("")
-                  .map((letter, j) => (j === 0 ? letter : "_"))
-                  .join("")
-              : "_____"}
-          </span>
-        {/each}
+      <p class="px-3 mb-4">Instructions will be added here.</p>
+      <button on:click={endIntro} class="mx-3 rounded-md bg-green-300 px-8 py-2"
+        >Start</button
+      >
+    {:else}
+      <div>
+        <p class="px-3 my-6">{sourcePhrases[phraseI]}</p>
+        <hr class="mb-4" />
+        <div class="px-3 leading-7">
+          {#each targetPhrases[phraseI].split(" ") as word, i}
+            <span
+              class="cursor-pointer py-1 {i === wordI &&
+                'bg-green-200 rounded-md'}"
+              on:click={() => toggleWord(i)}
+              >{wordStatusStore[phraseI][i]
+                ? word
+                : hintsAreOn
+                ? word
+                    .split("")
+                    .map((letter, j) => (j === 0 ? letter : "_"))
+                    .join("")
+                : "_____"}
+            </span>
+          {/each}
+        </div>
       </div>
-    </div>
+    {/if}
   </div>
   <div class="p-2 bg-gray-700 text-center">
     <div>
-      <span class="text-white mr-1">{phraseI+1}/{phraseCount}</span>
+      <span class="text-white mr-1">{phraseI + 1}/{phraseCount}</span>
       <ControlPadButton action={toggleHints} label="Hints" />
       <ControlPadButton action={showThreeWords} label="+3" />
       <ControlPadButton action={togglePhrase} label="All" />
