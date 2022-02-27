@@ -100,7 +100,7 @@
       >
     {:else}
       <div>
-        <p class="px-3 my-6">{sourcePhrases[phraseI]}</p>
+        <p class="px-3 my-5 leading-5">{sourcePhrases[phraseI]}</p>
         <hr class="mb-4" />
         <div class="px-3 leading-7">
           {#each targetPhrases[phraseI].split(" ") as word, i}
