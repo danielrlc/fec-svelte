@@ -105,12 +105,12 @@
   </div>
   <div class="p-2 bg-gray-700 text-center">
     <div>
-      <span class="text-white mr-2">{phraseI+1}/{phraseCount}</span>
+      <span class="text-white mr-1">{phraseI+1}/{phraseCount}</span>
       <ControlPadButton action={toggleHints} label="Hints" />
       <ControlPadButton action={showThreeWords} label="+3" />
       <ControlPadButton action={togglePhrase} label="All" />
       <ControlPadButton action={goForward1} label=">" />
-      <span class="text-white ml-2">{progress}%</span>
+      <span class="text-white ml-1">{progress}%</span>
     </div>
   </div>
 </div>
