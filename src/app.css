@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .c-flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .c-disabled {
+    @apply pointer-events-none opacity-25;
+  }
+
+  .c-flashcards-btn {
+    @apply w-12 h-10 mx-1 rounded-md leading-4;
+  }
+}
