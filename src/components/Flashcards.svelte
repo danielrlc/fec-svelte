@@ -173,29 +173,29 @@
   </div>
 
   {#if flashcardsAreShown || progressMapIsShown}
-    <div class="p-2 text-center text-sm">
+    <div class="p-2 text-center text-sm bg-gray-200">
       <div class="c-flex-center">
         <button
-          class="c-flashcards-btn border-2 border-gray-300 {(wholePhraseIsShown ||
+          class="c-flashcards-btn bg-white {(wholePhraseIsShown ||
             progressMapIsShown) &&
             'c-disabled'}"
           on:click={toggleHints}>{hintsAreOn ? "No hints" : "Hints"}</button
         >
 
         <button
-          class="c-flashcards-btn border-2 border-gray-300 {progressMapIsShown &&
+          class="c-flashcards-btn bg-white {progressMapIsShown &&
             'c-disabled'}"
           on:click={showThreeWords}>+3</button
         >
 
         <button
-          class="c-flashcards-btn border-2 border-gray-300 {progressMapIsShown &&
+          class="c-flashcards-btn bg-white {progressMapIsShown &&
             'c-disabled'}"
           on:click={togglePhrase}>{wholePhraseIsHidden ? "All" : "None"}</button
         >
 
         <button
-          class="c-flashcards-btn text-xl bg-gray-300 {progressMapIsShown &&
+          class="c-flashcards-btn text-lg bg-white {progressMapIsShown &&
             'c-disabled'}"
           on:click={goForward1}>=></button
         >
@@ -203,7 +203,7 @@
         <button
           class="c-flashcards-btn {phraseI % 10 === 9
             ? 'bg-green-300'
-            : 'bg-gray-300'}"
+            : 'bg-white'}"
           on:click={toggleProgressMap}>Map</button
         >
 
