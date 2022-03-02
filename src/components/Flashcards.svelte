@@ -94,6 +94,10 @@
     phraseI = i;
     showFlashcards();
   }
+
+  function toggleProgressMap() {
+    progressMapIsShown ? showFlashcards() : showProgressMap();
+  }
 </script>
 
 <div class="flex flex-col h-full">
@@ -113,7 +117,7 @@
         <p class="mb-6 text-sm">Click on a phrase to jump to it.</p>
 
         <div
-          class="grid grid-cols-10 gap-x-1 gap-y-4 p-3 content-center h-full"
+          class="grid grid-cols-10 gap-x-1 gap-y-3 p-3 content-center h-full"
         >
           {#each phraseStatusStore as phraseStatus, i}
             <button
@@ -136,6 +140,13 @@
     {/if}
 
     {#if flashcardsAreShown}
+      <div
+        class="h-2 {wholePhraseIsHidden
+          ? 'bg-red-300'
+          : wholePhraseIsShown
+          ? 'bg-green-300'
+          : 'bg-yellow-300'}"
+      />
       <div class="text-lg">
         <p class="px-3 my-5 leading-6">{sourcePhrases[phraseI]}</p>
         <hr class="mb-4" />
@@ -161,40 +172,53 @@
     {/if}
   </div>
 
-  {#if flashcardsAreShown}
-    <div class="p-2 bg-gray-700 text-center">
-      <div class="c-flex-center">
-        <span class="text-white mr-2">{phraseI + 1}/{phraseCount}</span>
+  {#if flashcardsAreShown || progressMapIsShown}
+    <div
+      class="h-2 {wholePhraseIsHidden
+        ? 'bg-red-300'
+        : wholePhraseIsShown
+        ? 'bg-green-300'
+        : 'bg-yellow-300'}"
+    />
 
+    <div class="p-2 text-center text-sm">
+      <div class="c-flex-center">
         <button
-          class="c-flashcards-btn bg-green-300 {wholePhraseIsShown &&
+          class="c-flashcards-btn border-2 border-gray-300 {(wholePhraseIsShown ||
+            progressMapIsShown) &&
             'c-disabled'}"
           on:click={toggleHints}>{hintsAreOn ? "No hints" : "Hints"}</button
         >
 
-        <button class="c-flashcards-btn bg-green-300" on:click={showThreeWords}
-          >+3</button
+        <button
+          class="c-flashcards-btn border-2 border-gray-300 {progressMapIsShown &&
+            'c-disabled'}"
+          on:click={showThreeWords}>+3</button
         >
 
         <button
-          class="c-flashcards-btn {wholePhraseIsHidden
-            ? 'bg-red-300'
-            : wholePhraseIsShown
-            ? 'bg-green-300'
-            : 'bg-yellow-300'}"
+          class="c-flashcards-btn border-2 border-gray-300 {progressMapIsShown &&
+            'c-disabled'}"
           on:click={togglePhrase}>{wholePhraseIsHidden ? "All" : "None"}</button
         >
 
-        <button class="c-flashcards-btn bg-green-300" on:click={goForward1}
-          >></button
+        <button
+          class="c-flashcards-btn text-xl bg-gray-300 {progressMapIsShown &&
+            'c-disabled'}"
+          on:click={goForward1}>=></button
         >
 
         <button
-          class="c-flashcards-btn bg-green-300"
-          on:click={showProgressMap}>Map</button
+          class="c-flashcards-btn {phraseI % 10 === 9
+            ? 'bg-green-300'
+            : 'bg-gray-300'}"
+          on:click={toggleProgressMap}>Map</button
         >
 
-        <span class="text-white ml-2">{progress}%</span>
+        <div class="flex flex-col content-center ml-3 leading-5">
+          <span>#{phraseI + 1}</span>
+          <span>{progress}%</span>
+        </div>
       </div>
     </div>
   {/if}
