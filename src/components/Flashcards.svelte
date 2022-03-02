@@ -100,7 +100,13 @@
   }
 </script>
 
-<div class="flex flex-col h-full">
+<div
+  class="flex flex-col h-full border-4 {wholePhraseIsHidden
+    ? 'border-red-300'
+    : wholePhraseIsShown
+    ? 'border-green-300'
+    : 'border-yellow-300'}"
+>
   <div class="flex-grow overflow-auto">
     {#if introIsShown}
       <Header />
@@ -140,13 +146,6 @@
     {/if}
 
     {#if flashcardsAreShown}
-      <div
-        class="h-2 {wholePhraseIsHidden
-          ? 'bg-red-300'
-          : wholePhraseIsShown
-          ? 'bg-green-300'
-          : 'bg-yellow-300'}"
-      />
       <div class="text-lg">
         <p class="px-3 my-5 leading-6">{sourcePhrases[phraseI]}</p>
         <hr class="mb-4" />
@@ -173,14 +172,6 @@
   </div>
 
   {#if flashcardsAreShown || progressMapIsShown}
-    <div
-      class="h-2 {wholePhraseIsHidden
-        ? 'bg-red-300'
-        : wholePhraseIsShown
-        ? 'bg-green-300'
-        : 'bg-yellow-300'}"
-    />
-
     <div class="p-2 text-center text-sm">
       <div class="c-flex-center">
         <button
