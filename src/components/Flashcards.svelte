@@ -10,8 +10,8 @@
   let wordI = 0;
   let hintsAreOn = false;
   let phraseCount = sourcePhrases.length;
-  let introIsShown = false;
-  let flashcardsAreShown = true;
+  let introIsShown = true;
+  let flashcardsAreShown = false;
   let progressMapIsShown = false;
 
   let wordStatusStore = targetPhrases.map((phrase) =>
@@ -102,6 +102,7 @@
 
 <div class="flex flex-col h-full">
   <div class="flex-grow overflow-auto">
+    <!-- Intro -->
     {#if introIsShown}
       <Header />
       <Title {title} />
@@ -111,34 +112,35 @@
       >
     {/if}
 
+    <!-- Progress map -->
     {#if progressMapIsShown}
-      <div class="grid content-center py-4 h-full text-center">
-        <h2 class="text-xl font-bold mb-2">Progress map</h2>
-        <p class="mb-6 text-sm">Click on a phrase to jump to it.</p>
+      <div class="text-center pt-4 px-3">
+        <h2 class="text-xl font-bold mb-1">Progress map</h2>
+        <p class="mb-4 text-sm">
+          Review your progress and pick your next phrase.
+        </p>
+      </div>
 
-        <div
-          class="grid grid-cols-10 gap-x-1 gap-y-3 p-3 content-center h-full"
-        >
-          {#each phraseStatusStore as phraseStatus, i}
-            <button
-              class="c-flex-center w-7 h-10 rounded-md {phraseStatus ===
-              'tolearn'
-                ? 'bg-red-300'
-                : phraseStatus === 'learning'
-                ? 'bg-yellow-300'
-                : 'bg-green-300'} {i === phraseI && 'border-4 border-gray-700'}"
-              on:click={(_) => selectPhraseFromProgressMap(i)}
-              >{phraseStatus === "tolearn"
-                ? "O"
-                : phraseStatus === "learning"
-                ? "..."
-                : "X"}</button
-            >
-          {/each}
-        </div>
+      <div class="grid grid-cols-10 gap-x-1 gap-y-2 p-3">
+        {#each phraseStatusStore as phraseStatus, i}
+          <button
+            class="c-flex-center h-9 rounded-md {phraseStatus === 'tolearn'
+              ? 'bg-red-300'
+              : phraseStatus === 'learning'
+              ? 'bg-yellow-300'
+              : 'bg-green-300'} {i === phraseI && 'border-4 border-gray-500'}"
+            on:click={(_) => selectPhraseFromProgressMap(i)}
+            >{phraseStatus === "tolearn"
+              ? "O"
+              : phraseStatus === "learning"
+              ? "..."
+              : "X"}</button
+          >
+        {/each}
       </div>
     {/if}
 
+    <!-- Flashcard -->
     {#if flashcardsAreShown}
       <div
         class="h-1 {wholePhraseIsHidden
@@ -172,6 +174,26 @@
     {/if}
   </div>
 
+  <!-- Progress bar -->
+  {#if flashcardsAreShown || progressMapIsShown}
+    <div
+      class="grid grid-cols-10"
+      style="grid-template-columns: repeat(50, 1fr);"
+    >
+      {#each phraseStatusStore as phraseStatus, i}
+        <span
+          class="h-2 {phraseStatus === 'tolearn'
+            ? 'bg-red-300'
+            : phraseStatus === 'learning'
+            ? 'bg-yellow-300'
+            : 'bg-green-300'} {i === phraseI && 'border border-gray-500'}"
+          on:click={(_) => selectPhraseFromProgressMap(i)}
+        />
+      {/each}
+    </div>
+  {/if}
+
+  <!-- Control pad -->
   {#if flashcardsAreShown || progressMapIsShown}
     <div class="p-2 text-center text-sm bg-gray-200">
       <div class="c-flex-center">
@@ -183,15 +205,14 @@
         >
 
         <button
-          class="c-flashcards-btn bg-white {progressMapIsShown &&
-            'c-disabled'}"
+          class="c-flashcards-btn bg-white {progressMapIsShown && 'c-disabled'}"
           on:click={showThreeWords}>+3</button
         >
 
         <button
-          class="c-flashcards-btn bg-white {progressMapIsShown &&
-            'c-disabled'}"
-          on:click={togglePhrase}>{wholePhraseIsHidden ? "All" : "None"}</button
+          class="c-flashcards-btn bg-white {progressMapIsShown && 'c-disabled'}"
+          on:click={togglePhrase}
+          >{wholePhraseIsHidden ? "Words" : "No words"}</button
         >
 
         <button
@@ -215,6 +236,3 @@
     </div>
   {/if}
 </div>
-
-<style>
-</style>
