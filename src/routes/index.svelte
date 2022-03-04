@@ -7,8 +7,8 @@
       slug: "1-ludwig-turns-up-at-the-wrong-door",
     },
     {
-      title: "#2 - Spoken phrases (placeholder content)",
-      slug: "2-spoken-phrases",
+      title: "#2 - Edward meets Aino and shares a secret",
+      slug: "2-edward-meets-aino-and-shares-a-secret",
     },
   ];
 </script>

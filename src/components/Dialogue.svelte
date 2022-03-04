@@ -13,7 +13,7 @@
   let hintsAreOn = true;
 
   let wordStatusStore = dialogue.map((line) =>
-    line[speech].split(" ").map((_) => true)
+    line[speech].split(" ").map((_) => false)
   );
 
   $: speechStatusStore = wordStatusStore.map((statuses) =>
