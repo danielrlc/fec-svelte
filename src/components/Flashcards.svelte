@@ -18,7 +18,6 @@
     phrase.split(" ").map((_) => false)
   );
 
-
   $: phraseStatusStore = wordStatusStore.map((statuses) =>
     statuses.every((status) => status === false)
       ? "tolearn"
@@ -116,6 +115,7 @@
 
     <!-- Progress map -->
     {#if progressMapIsShown}
+      <Header />
       <div class="text-center pt-4 px-3">
         <h2 class="text-xl font-bold mb-1">Progress map</h2>
         <p class="mb-4 text-sm">
@@ -123,7 +123,7 @@
         </p>
       </div>
 
-      <div class="grid grid-cols-10 gap-x-1 gap-y-2 p-3">
+      <div class="grid grid-cols-10 gap-1 p-3">
         {#each phraseStatusStore as phraseStatus, i}
           <button
             class="c-flex-center h-9 rounded-md {phraseStatus === 'tolearn'
@@ -133,9 +133,9 @@
               : 'bg-green-300'} {i === phraseI && 'border-4 border-gray-500'}"
             on:click={(_) => selectPhraseFromProgressMap(i)}
             >{phraseStatus === "tolearn"
-              ? "O"
+              ? "–"
               : phraseStatus === "learning"
-              ? "..."
+              ? "O"
               : "X"}</button
           >
         {/each}
@@ -151,7 +151,7 @@
           ? 'bg-green-300'
           : 'bg-yellow-300'}"
       />
-      <div class="text-lg">
+      <div class="u-text-ql">
         <p class="px-3 my-5 leading-6">{sourcePhrases[phraseI]}</p>
         <hr class="mb-4" />
         <div class="px-3 leading-7">
@@ -226,7 +226,7 @@
           class="c-flashcards-btn {phraseI % 10 === 9
             ? 'bg-green-300'
             : 'bg-white'}"
-          on:click={toggleProgressMap}>Map</button
+          on:click={toggleProgressMap}>Map/ Menu</button
         >
 
         <div class="flex flex-col content-center ml-3 leading-5">

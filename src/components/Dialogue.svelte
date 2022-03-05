@@ -121,11 +121,11 @@
 
 <div class="flex flex-col h-full">
   <div class="flex-grow overflow-auto">
+    <Header />
+
     <!-- Intro -->
     {#if introViewIsShown}
-      <Header />
-      <Title {title} />
-      <div class="px-3 text-lg">
+      <div class="px-3 u-text-ql">
         <h2 class="text-xl font-bold mb-3">Instructions</h2>
         <p class="mb-4">
           In this exercise, you can hide and show words and whole lines of
@@ -140,13 +140,13 @@
       </div>
     {/if}
 
-    <!-- Flashcard -->
+    <!-- Dialogue -->
     {#if dialogueViewIsShown}
       <Title {title} />
-      <div class="leading-7 text-lg">
+      <div class="leading-7 u-text-ql">
         {#each dialogue as line, i}
           <p
-            class="px-3 py-2 my-1 border-l-4 {speechStatusStore[i] === 'tolearn'
+            class="px-2 py-1 my-1 border-l-4 {speechStatusStore[i] === 'tolearn'
               ? 'border-red-300'
               : speechStatusStore[i] === 'learning'
               ? 'border-yellow-300'
@@ -183,39 +183,35 @@
 
   <!-- Toggle dialogue confirm popup -->
   {#if flipDialogueViewIsShown}
-    <div class="c-flex-center h-full bg-gray-100 text-sm absolute z-10">
-      <div class="px-3 py-6 mx-4 border-2 border-red-100 rounded-md">
-        <div class="mb-6">
-          <h2 class="text-lg font-bold mb-1">Show dialogue</h2>
-          <p class="mb-3">
-            Show the whole dialogue if you just want to read it.
-          </p>
-          <button
-            class="px-3 py-1 rounded-md bg-green-300"
-            on:click={showDialogue}>Show dialogue</button
-          >
-        </div>
+    <div class="h-full bg-gray-100 text-sm absolute z-10 px-3 py-6">
+      <div class="mb-6">
+        <h2 class="text-lg font-bold mb-1">Show dialogue</h2>
+        <p class="mb-3">Show the whole dialogue if you just want to read it.</p>
+        <button
+          class="px-3 py-1 rounded-md bg-green-300"
+          on:click={showDialogue}>Show dialogue</button
+        >
+      </div>
 
-        <div class="mb-6">
-          <h2 class="text-lg font-bold mb-1">Hide dialogue</h2>
-          <p class="mb-3">
-            Hide the whole dialogue if you want to start learning it from
-            scratch again.
-          </p>
-          <button
-            class="px-3 py-1 rounded-md bg-green-300"
-            on:click={hideDialogue}>Hide dialogue</button
-          >
-        </div>
+      <div class="mb-6">
+        <h2 class="text-lg font-bold mb-1">Hide dialogue</h2>
+        <p class="mb-3">
+          Hide the whole dialogue if you want to start learning it from scratch
+          again.
+        </p>
+        <button
+          class="px-3 py-1 rounded-md bg-green-300"
+          on:click={hideDialogue}>Hide dialogue</button
+        >
+      </div>
 
-        <div class="mb-2">
-          <h2 class="text-lg font-bold mb-1">Continue learning</h2>
-          <p class="mb-3">Continue learning without changing anything.</p>
-          <button
-            class="px-3 py-1 rounded-md bg-red-300"
-            on:click={hideFlipDialogueView}>Continue learning</button
-          >
-        </div>
+      <div class="mb-2">
+        <h2 class="text-lg font-bold mb-1">Continue learning</h2>
+        <p class="mb-3">Continue learning without changing anything.</p>
+        <button
+          class="px-3 py-1 rounded-md bg-red-300"
+          on:click={hideFlipDialogueView}>Continue learning</button
+        >
       </div>
     </div>
   {/if}
@@ -232,12 +228,12 @@
             ? 'bg-red-300'
             : phraseStatus === 'learning'
             ? 'bg-yellow-300'
-            : 'bg-green-300'}"
+            : 'bg-green-300'} {i === lineI && 'border border-gray-700'}"
         />
       {/each}
     </div>
 
-    <div class="p-2 text-center text-sm">
+    <div class="p-1 text-center text-sm">
       <div class="c-flex-center">
         <button class="c-flashcards-btn bg-gray-200" on:click={toggleHints}
           >{hintsAreOn ? "No hints" : "Hints"}</button
