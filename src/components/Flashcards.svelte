@@ -18,6 +18,7 @@
     phrase.split(" ").map((_) => false)
   );
 
+
   $: phraseStatusStore = wordStatusStore.map((statuses) =>
     statuses.every((status) => status === false)
       ? "tolearn"
@@ -26,6 +27,7 @@
       : "learning"
   );
 
+  let currentPhraseWordCount = wordStatusStore[phraseI].length;
   $: wholePhraseIsHidden = phraseStatusStore[phraseI] === "tolearn";
   $: wholePhraseIsShown = phraseStatusStore[phraseI] === "learnt";
 
@@ -42,7 +44,7 @@
 
   function showWordAndGoToNext() {
     wordStatusStore[phraseI][wordI] = true;
-    wordI < wordStatusStore[phraseI].length - 1 && wordI++;
+    wordI < currentPhraseWordCount - 1 && wordI++;
   }
 
   function showThreeWords() {
@@ -178,7 +180,7 @@
   {#if flashcardsAreShown || progressMapIsShown}
     <div
       class="grid grid-cols-10"
-      style="grid-template-columns: repeat(50, 1fr);"
+      style="grid-template-columns: repeat({phraseCount}, 1fr);"
     >
       {#each phraseStatusStore as phraseStatus, i}
         <span
@@ -187,7 +189,6 @@
             : phraseStatus === 'learning'
             ? 'bg-yellow-300'
             : 'bg-green-300'} {i === phraseI && 'border border-gray-500'}"
-          on:click={(_) => selectPhraseFromProgressMap(i)}
         />
       {/each}
     </div>
