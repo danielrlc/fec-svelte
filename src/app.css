@@ -2,26 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  /* Increase size proportionally for very small screens,
-   * landing on 16px at 375px width. 
-   * This is done to maximise the use of screen width and
-   * ensure consistent layout on different mobile devices
-   */
-  @media (max-width: 375px) {
-    html {
-      font-size: 4.2666667vw;
-    }
-  }
-
-  /* Slow and then end the rate of increase on larger screens */
-  @media (min-width: 376px) {
-    html {
-      font-size: min(calc(80% + 1vw), 200%);
-    }
-  }
-}
-
 @layer components {
   .c-flex-center {
     @apply flex justify-center items-center;

@@ -125,15 +125,15 @@
     {#if introViewIsShown}
       <Header />
       <Title {title} />
-      <div class="px-3">
-        <h2 class="text-lg font-bold mb-3">Instructions</h2>
+      <div class="px-3 text-lg">
+        <h2 class="text-xl font-bold mb-3">Instructions</h2>
         <p class="mb-4">
           In this exercise, you can hide and show words and whole lines of
           dialogue. Try to work out the next word or line, then show it and see
           if you were correct. If you get it wrong, hide the word or line again
           and come back to it a bit later.
         </p>
-        <p class="mb-6">Repeat this process through the whole dialogue.</p>
+        <p class="mb-8">Repeat this process through the whole dialogue.</p>
         <button on:click={endIntro} class="rounded-md bg-green-300 px-8 py-1"
           >Start</button
         >
@@ -143,43 +143,40 @@
     <!-- Flashcard -->
     {#if dialogueViewIsShown}
       <Title {title} />
-      <div>
-        <div class="leading-7">
-          {#each dialogue as line, i}
-            <p
-              class="px-3 py-2 my-1 border-l-4 {speechStatusStore[i] ===
-              'tolearn'
-                ? 'border-red-300'
-                : speechStatusStore[i] === 'learning'
-                ? 'border-yellow-300'
-                : 'border-green-300'}"
-            >
+      <div class="leading-7 text-lg">
+        {#each dialogue as line, i}
+          <p
+            class="px-3 py-2 my-1 border-l-4 {speechStatusStore[i] === 'tolearn'
+              ? 'border-red-300'
+              : speechStatusStore[i] === 'learning'
+              ? 'border-yellow-300'
+              : 'border-green-300'}"
+          >
+            <span
+              on:click={() => selectLine(i)}
+              class="font-bold cursor-pointer"
+              >{line[speaker]}:
+            </span>
+            {#each line[speech].split(" ") as word, j}
               <span
-                on:click={() => selectLine(i)}
-                class="font-bold cursor-pointer"
-                >{line[speaker]}:
+                class="cursor-pointer py-1 {i === lineI &&
+                  j === wordI &&
+                  'bg-green-200 rounded-md'}"
+                on:click={() => toggleWord(i, j)}
+                >{wordStatusStore[i][j]
+                  ? word
+                  : hintsAreOn
+                  ? word
+                      .split("")
+                      .map((letter, k) => (k === 0 ? letter : "_"))
+                      .join("")
+                  : "____"}
               </span>
-              {#each line[speech].split(" ") as word, j}
-                <span
-                  class="cursor-pointer py-1 {i === lineI &&
-                    j === wordI &&
-                    'bg-green-200 rounded-md'}"
-                  on:click={() => toggleWord(i, j)}
-                  >{wordStatusStore[i][j]
-                    ? word
-                    : hintsAreOn
-                    ? word
-                        .split("")
-                        .map((letter, k) => (k === 0 ? letter : "_"))
-                        .join("")
-                    : "____"}
-                </span>
-                <!-- Empty span needed to force space between words -->
-                <span />
-              {/each}
-            </p>
-          {/each}
-        </div>
+              <!-- Empty span needed to force space between words -->
+              <span />
+            {/each}
+          </p>
+        {/each}
       </div>
     {/if}
   </div>
@@ -240,7 +237,7 @@
       {/each}
     </div>
 
-    <div class="p-2 text-center text-xs">
+    <div class="p-2 text-center text-sm">
       <div class="c-flex-center">
         <button class="c-flashcards-btn bg-gray-200" on:click={toggleHints}
           >{hintsAreOn ? "No hints" : "Hints"}</button
