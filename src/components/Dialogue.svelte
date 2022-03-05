@@ -256,7 +256,7 @@
           on:click={showFlipDialogueView}>ALL</button
         >
 
-        <div class="flex flex-col content-center ml-3 leading-snug">
+        <div class="flex flex-col content-center ml-3 leading-tight">
           <span>#{lineI + 1}</span>
           <span>{progress}%</span>
         </div>

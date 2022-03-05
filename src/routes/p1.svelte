@@ -2,7 +2,7 @@
   import Flashcards from "../components/Flashcards.svelte";
 
   const content = {
-    title: `#2: Päätimme eilen lähteä...`,
+    title: `#P1: Päätimme eilen lähteä...`,
 
     targetPhrases: [
       `Päätimme eilen lähteä työkavereiden kanssa ulos syömään.`,

@@ -196,7 +196,7 @@
 
   <!-- Control pad -->
   {#if flashcardsAreShown || progressMapIsShown}
-    <div class="p-2 text-center text-sm bg-gray-200">
+    <div class="p-1 text-center text-sm bg-gray-200">
       <div class="c-flex-center">
         <button
           class="c-flashcards-btn bg-white {(wholePhraseIsShown ||
@@ -229,7 +229,7 @@
           on:click={toggleProgressMap}>Map/ Menu</button
         >
 
-        <div class="flex flex-col content-center ml-3 leading-5">
+        <div class="flex flex-col content-center ml-3 leading-tight">
           <span>#{phraseI + 1}</span>
           <span>{progress}%</span>
         </div>
