@@ -116,9 +116,9 @@
     <!-- Progress map -->
     {#if progressMapIsShown}
       <Header />
-      <div class="text-center pt-4 px-3">
+      <div class="px-3 mb-2">
         <h2 class="text-xl font-bold mb-1">Progress map</h2>
-        <p class="mb-4 text-sm">
+        <p class="text-sm">
           Review your progress and pick your next phrase.
         </p>
       </div>
@@ -126,7 +126,7 @@
       <div class="grid grid-cols-10 gap-1 p-3">
         {#each phraseStatusStore as phraseStatus, i}
           <button
-            class="c-flex-center h-9 rounded-md {phraseStatus === 'tolearn'
+            class="c-flex-center h-8 rounded-md {phraseStatus === 'tolearn'
               ? 'bg-red-300'
               : phraseStatus === 'learning'
               ? 'bg-yellow-300'
