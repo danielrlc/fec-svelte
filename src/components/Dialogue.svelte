@@ -143,7 +143,7 @@
     <!-- Dialogue -->
     {#if dialogueViewIsShown}
       <Title {title} />
-      <div class="leading-7 u-text-ql">
+      <div class="leading-7 u-text-ql pb-8">
         {#each dialogue as line, i}
           <p
             class="px-2 py-1 my-1 border-l-4 {speechStatusStore[i] === 'tolearn'
@@ -219,7 +219,7 @@
   <!-- Progress bar -->
   {#if dialogueViewIsShown}
     <div
-      class="grid grid-cols-10"
+      class="grid border-y border-gray-500"
       style="grid-template-columns: repeat({speechCount}, 1fr);"
     >
       {#each speechStatusStore as phraseStatus, i}
@@ -233,27 +233,27 @@
       {/each}
     </div>
 
-    <div class="p-1 text-center text-sm">
+    <div class="text-center text-sm" style="padding: 0.35em;">
       <div class="c-flex-center">
-        <button class="c-flashcards-btn bg-gray-200" on:click={toggleHints}
+        <button class="c-control-pad-btn bg-gray-200" on:click={toggleHints}
           >{hintsAreOn ? "No hints" : "Hints"}</button
         >
 
-        <button class="c-flashcards-btn bg-gray-200" on:click={showThreeWords}
+        <button class="c-control-pad-btn bg-gray-200" on:click={showThreeWords}
           >+3</button
         >
 
-        <button class="c-flashcards-btn bg-gray-200" on:click={toggleSpeech}
+        <button class="c-control-pad-btn bg-gray-200" on:click={toggleSpeech}
           >{wholeLineIsHidden ? "Show" : "Hide"}</button
         >
 
-        <button class="c-flashcards-btn bg-gray-200" on:click={goToNextLine}
+        <button class="c-control-pad-btn bg-gray-200" on:click={goToNextLine}
           >=></button
         >
 
         <button
-          class="c-flashcards-btn bg-gray-200"
-          on:click={showFlipDialogueView}>ALL</button
+          class="c-control-pad-btn bg-gray-200 px-1"
+          on:click={showFlipDialogueView}>Flip all</button
         >
 
         <div class="flex flex-col content-center ml-3 leading-tight">

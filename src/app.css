@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  /* Scale base font size down for small phones like the old iPhone SE.
+  This is so things like the control pad aren't too wide to fit on one line. */
+  @media (max-width: 374px) {
+    html {
+      font-size: 4.2666667vw;
+    }
+  }
+}
+
 @layer components {
   .c-flex-center {
     @apply flex justify-center items-center;
@@ -11,7 +21,7 @@
     @apply pointer-events-none opacity-25;
   }
 
-  .c-flashcards-btn {
+  .c-control-pad-btn {
     @apply w-12 h-10 mx-1 rounded-md leading-none text-sm;
   }
 }

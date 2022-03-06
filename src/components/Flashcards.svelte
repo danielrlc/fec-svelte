@@ -26,7 +26,7 @@
       : "learning"
   );
 
-  let currentPhraseWordCount = wordStatusStore[phraseI].length;
+  $: currentPhraseWordCount = wordStatusStore[phraseI].length;
   $: wholePhraseIsHidden = phraseStatusStore[phraseI] === "tolearn";
   $: wholePhraseIsShown = phraseStatusStore[phraseI] === "learnt";
 
@@ -144,6 +144,7 @@
 
     <!-- Flashcard -->
     {#if flashcardsAreShown}
+      <!-- Flashcard status bar -->
       <div
         class="h-1 {wholePhraseIsHidden
           ? 'bg-red-300'
@@ -151,7 +152,9 @@
           ? 'bg-green-300'
           : 'bg-yellow-300'}"
       />
-      <div class="u-text-ql">
+
+      <!-- Flashcard -->
+      <div class="u-text-ql pb-8">
         <p class="px-3 my-5 leading-6">{sourcePhrases[phraseI]}</p>
         <hr class="mb-4" />
         <div class="px-3 leading-7">
@@ -179,7 +182,7 @@
   <!-- Progress bar -->
   {#if flashcardsAreShown || progressMapIsShown}
     <div
-      class="grid grid-cols-10"
+      class="grid border-y border-gray-500"
       style="grid-template-columns: repeat({phraseCount}, 1fr);"
     >
       {#each phraseStatusStore as phraseStatus, i}
@@ -196,36 +199,36 @@
 
   <!-- Control pad -->
   {#if flashcardsAreShown || progressMapIsShown}
-    <div class="p-1 text-center text-sm bg-gray-200">
+    <div class="text-center text-sm" style="padding: 0.35em;">
       <div class="c-flex-center">
         <button
-          class="c-flashcards-btn bg-white {(wholePhraseIsShown ||
+          class="c-control-pad-btn bg-gray-200 {(wholePhraseIsShown ||
             progressMapIsShown) &&
             'c-disabled'}"
           on:click={toggleHints}>{hintsAreOn ? "No hints" : "Hints"}</button
         >
 
         <button
-          class="c-flashcards-btn bg-white {progressMapIsShown && 'c-disabled'}"
+          class="c-control-pad-btn bg-gray-200 {progressMapIsShown && 'c-disabled'}"
           on:click={showThreeWords}>+3</button
         >
 
         <button
-          class="c-flashcards-btn bg-white {progressMapIsShown && 'c-disabled'}"
+          class="c-control-pad-btn bg-gray-200 {progressMapIsShown && 'c-disabled'}"
           on:click={togglePhrase}
           >{wholePhraseIsHidden ? "Words" : "No words"}</button
         >
 
         <button
-          class="c-flashcards-btn text-lg bg-white {progressMapIsShown &&
+          class="c-control-pad-btn text-lg bg-gray-200 {progressMapIsShown &&
             'c-disabled'}"
           on:click={goForward1}>=></button
         >
 
         <button
-          class="c-flashcards-btn {phraseI % 10 === 9
+          class="c-control-pad-btn {phraseI % 10 === 9
             ? 'bg-green-300'
-            : 'bg-white'}"
+            : 'bg-gray-200'}"
           on:click={toggleProgressMap}>Map/ Menu</button
         >
 
