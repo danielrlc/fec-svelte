@@ -219,7 +219,7 @@
   <!-- Progress bar -->
   {#if dialogueViewIsShown}
     <div
-      class="grid border-y border-gray-500"
+      class="grid pt-1"
       style="grid-template-columns: repeat({speechCount}, 1fr);"
     >
       {#each speechStatusStore as phraseStatus, i}
@@ -233,7 +233,7 @@
       {/each}
     </div>
 
-    <div class="text-center text-sm" style="padding: 0.35em;">
+    <div class="text-center py-2">
       <div class="c-flex-center">
         <button class="c-control-pad-btn bg-gray-200" on:click={toggleHints}
           >{hintsAreOn ? "No hints" : "Hints"}</button
@@ -252,7 +252,7 @@
         >
 
         <button
-          class="c-control-pad-btn bg-gray-200 px-1"
+          class="c-control-pad-btn bg-gray-200"
           on:click={showFlipDialogueView}>Flip all</button
         >
 
