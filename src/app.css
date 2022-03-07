@@ -10,6 +10,13 @@
       font-size: 4.2666667vw;
     }
   }
+
+  /* Slow and then end the rate of increase on larger screens */
+  @media (min-width: 600px) {
+    html {
+      font-size: min(calc(62.5% + 1vw), 120%);
+    }
+  }
 }
 
 @layer components {

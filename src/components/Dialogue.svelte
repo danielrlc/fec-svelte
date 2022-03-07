@@ -123,67 +123,74 @@
   <div class="flex-grow overflow-auto">
     <Header />
 
-    <!-- Intro -->
-    {#if introViewIsShown}
-      <div class="px-3 u-text-ql">
-        <h2 class="text-xl font-bold mb-3">Instructions</h2>
-        <p class="mb-4">
-          In this exercise, you can hide and show words and whole lines of
-          dialogue. Try to work out the next word or line, then show it and see
-          if you were correct. If you get it wrong, hide the word or line again
-          and come back to it a bit later.
-        </p>
-        <p class="mb-8">Repeat this process through the whole dialogue.</p>
-        <button on:click={endIntro} class="rounded-md bg-green-300 px-8 py-1"
-          >Start</button
-        >
-      </div>
-    {/if}
+    <div class="flex justify-center">
+      <div class="max-w-2xl">
+        <!-- Intro -->
+        {#if introViewIsShown}
+          <div class="px-3 u-text-ql">
+            <h2 class="text-xl font-bold mb-3">Instructions</h2>
+            <p class="mb-4">
+              In this exercise, you can hide and show words and whole lines of
+              dialogue. Try to work out the next word or line, then show it and
+              see if you were correct. If you get it wrong, hide the word or
+              line again and come back to it a bit later.
+            </p>
+            <p class="mb-8">Repeat this process through the whole dialogue.</p>
+            <button
+              on:click={endIntro}
+              class="rounded-md bg-green-300 px-8 py-1">Start</button
+            >
+          </div>
+        {/if}
 
-    <!-- Dialogue -->
-    {#if dialogueViewIsShown}
-      <Title {title} />
-      <div class="leading-7 u-text-ql pb-8">
-        {#each dialogue as line, i}
-          <p
-            class="px-2 py-1 my-1 border-l-4 {speechStatusStore[i] === 'tolearn'
-              ? 'border-red-300'
-              : speechStatusStore[i] === 'learning'
-              ? 'border-yellow-300'
-              : 'border-green-300'}"
-          >
-            <span
-              on:click={() => selectLine(i)}
-              class="font-bold cursor-pointer"
-              >{line[speaker]}:
-            </span>
-            {#each line[speech].split(" ") as word, j}
-              <span
-                class="cursor-pointer py-1 {i === lineI &&
-                  j === wordI &&
-                  'bg-green-200 rounded-md'}"
-                on:click={() => toggleWord(i, j)}
-                >{wordStatusStore[i][j]
-                  ? word
-                  : hintsAreOn
-                  ? word
-                      .split("")
-                      .map((letter, k) => (k === 0 ? letter : "_"))
-                      .join("")
-                  : "____"}
-              </span>
-              <!-- Empty span needed to force space between words -->
-              <span />
+        <!-- Dialogue -->
+        {#if dialogueViewIsShown}
+          <Title {title} />
+          <div class="leading-7 u-text-ql pb-8">
+            {#each dialogue as line, i}
+              <p
+                class="pl-2 pr-3 lg:px-8 py-1 my-1 border-l-4 {speechStatusStore[
+                  i
+                ] === 'tolearn'
+                  ? 'border-red-300'
+                  : speechStatusStore[i] === 'learning'
+                  ? 'border-yellow-300'
+                  : 'border-green-300'}"
+              >
+                <span
+                  on:click={() => selectLine(i)}
+                  class="font-bold cursor-pointer"
+                  >{line[speaker]}:
+                </span>
+                {#each line[speech].split(" ") as word, j}
+                  <span
+                    class="cursor-pointer py-1 {i === lineI &&
+                      j === wordI &&
+                      'bg-green-200 rounded-md'}"
+                    on:click={() => toggleWord(i, j)}
+                    >{wordStatusStore[i][j]
+                      ? word
+                      : hintsAreOn
+                      ? word
+                          .split("")
+                          .map((letter, k) => (k === 0 ? letter : "_"))
+                          .join("")
+                      : "____"}
+                  </span>
+                  <!-- Empty span needed to force space between words -->
+                  <span />
+                {/each}
+              </p>
             {/each}
-          </p>
-        {/each}
+          </div>
+        {/if}
       </div>
-    {/if}
+    </div>
   </div>
 
   <!-- Toggle dialogue confirm popup -->
   {#if flipDialogueViewIsShown}
-    <div class="h-full bg-gray-100 text-sm absolute z-10 px-3 py-6">
+    <div class="h-full bg-gray-100 absolute z-10 px-3 py-6">
       <div class="mb-6">
         <h2 class="text-lg font-bold mb-1">Show dialogue</h2>
         <p class="mb-3">Show the whole dialogue if you just want to read it.</p>
@@ -224,7 +231,7 @@
     >
       {#each speechStatusStore as phraseStatus, i}
         <span
-          class="h-2 {phraseStatus === 'tolearn'
+          class="h-2 lg:h-3 {phraseStatus === 'tolearn'
             ? 'bg-red-300'
             : phraseStatus === 'learning'
             ? 'bg-yellow-300'
@@ -235,24 +242,28 @@
 
     <div class="text-center py-2">
       <div class="c-flex-center">
-        <button class="c-control-pad-btn bg-gray-200" on:click={toggleHints}
-          >{hintsAreOn ? "No hints" : "Hints"}</button
-        >
-
-        <button class="c-control-pad-btn bg-gray-200" on:click={showThreeWords}
-          >+3</button
-        >
-
-        <button class="c-control-pad-btn bg-gray-200" on:click={toggleSpeech}
-          >{wholeLineIsHidden ? "Show" : "Hide"}</button
-        >
-
-        <button class="c-control-pad-btn bg-gray-200" on:click={goToNextLine}
-          >=></button
+        <button
+          class="c-control-pad-btn bg-gray-300 hover:bg-gray-200"
+          on:click={toggleHints}>{hintsAreOn ? "No hints" : "Hints"}</button
         >
 
         <button
-          class="c-control-pad-btn bg-gray-200"
+          class="c-control-pad-btn bg-gray-300 hover:bg-gray-200"
+          on:click={showThreeWords}>+3</button
+        >
+
+        <button
+          class="c-control-pad-btn bg-gray-300 hover:bg-gray-200"
+          on:click={toggleSpeech}>{wholeLineIsHidden ? "Show" : "Hide"}</button
+        >
+
+        <button
+          class="c-control-pad-btn bg-gray-300 hover:bg-gray-200"
+          on:click={goToNextLine}>=></button
+        >
+
+        <button
+          class="c-control-pad-btn bg-gray-300 hover:bg-gray-200"
           on:click={showFlipDialogueView}>Flip all</button
         >
 

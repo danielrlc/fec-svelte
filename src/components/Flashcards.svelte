@@ -118,9 +118,7 @@
       <Header />
       <div class="px-3 mb-2">
         <h2 class="text-xl font-bold mb-1">Progress map</h2>
-        <p class="text-sm">
-          Review your progress and pick your next phrase.
-        </p>
+        <p class="text-sm">Review your progress and pick your next phrase.</p>
       </div>
 
       <div class="grid grid-cols-10 gap-1 p-3">
@@ -199,7 +197,7 @@
 
   <!-- Control pad -->
   {#if flashcardsAreShown || progressMapIsShown}
-    <div class="text-center text-sm" style="padding: 0.35em;">
+    <div class="text-center py-2">
       <div class="c-flex-center">
         <button
           class="c-control-pad-btn bg-gray-200 {(wholePhraseIsShown ||
@@ -209,12 +207,14 @@
         >
 
         <button
-          class="c-control-pad-btn bg-gray-200 {progressMapIsShown && 'c-disabled'}"
+          class="c-control-pad-btn bg-gray-200 {progressMapIsShown &&
+            'c-disabled'}"
           on:click={showThreeWords}>+3</button
         >
 
         <button
-          class="c-control-pad-btn bg-gray-200 {progressMapIsShown && 'c-disabled'}"
+          class="c-control-pad-btn bg-gray-200 {progressMapIsShown &&
+            'c-disabled'}"
           on:click={togglePhrase}
           >{wholePhraseIsHidden ? "Words" : "No words"}</button
         >
