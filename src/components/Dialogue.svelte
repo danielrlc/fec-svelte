@@ -1,6 +1,7 @@
 <script>
   import Header from "./Header.svelte";
   import Title from "./Title.svelte";
+  import ControlPadButton from "./ControlPadButton.svelte";
 
   export let title;
   export let dialogue;
@@ -190,35 +191,39 @@
 
   <!-- Toggle dialogue confirm popup -->
   {#if flipDialogueViewIsShown}
-    <div class="h-full bg-gray-100 absolute z-10 px-3 py-6">
-      <div class="mb-6">
-        <h2 class="text-lg font-bold mb-1">Show dialogue</h2>
-        <p class="mb-3">Show the whole dialogue if you just want to read it.</p>
-        <button
-          class="px-3 py-1 rounded-md bg-green-300"
-          on:click={showDialogue}>Show dialogue</button
-        >
-      </div>
+    <div class="h-full w-full bg-gray-100 absolute z-10 px-3 py-6">
+      <div class="max-w-2xl mx-auto">
+        <div class="mb-6">
+          <h2 class="text-lg font-bold mb-1">Show dialogue</h2>
+          <p class="mb-3">
+            Show the whole dialogue if you just want to read it.
+          </p>
+          <button
+            class="px-3 py-1 rounded-md bg-green-300"
+            on:click={showDialogue}>Show dialogue</button
+          >
+        </div>
 
-      <div class="mb-6">
-        <h2 class="text-lg font-bold mb-1">Hide dialogue</h2>
-        <p class="mb-3">
-          Hide the whole dialogue if you want to start learning it from scratch
-          again.
-        </p>
-        <button
-          class="px-3 py-1 rounded-md bg-green-300"
-          on:click={hideDialogue}>Hide dialogue</button
-        >
-      </div>
+        <div class="mb-6">
+          <h2 class="text-lg font-bold mb-1">Hide dialogue</h2>
+          <p class="mb-3">
+            Hide the whole dialogue if you want to start learning it from
+            scratch again.
+          </p>
+          <button
+            class="px-3 py-1 rounded-md bg-green-300"
+            on:click={hideDialogue}>Hide dialogue</button
+          >
+        </div>
 
-      <div class="mb-2">
-        <h2 class="text-lg font-bold mb-1">Continue learning</h2>
-        <p class="mb-3">Continue learning without changing anything.</p>
-        <button
-          class="px-3 py-1 rounded-md bg-red-300"
-          on:click={hideFlipDialogueView}>Continue learning</button
-        >
+        <div class="mb-2">
+          <h2 class="text-lg font-bold mb-1">Continue learning</h2>
+          <p class="mb-3">Continue learning without changing anything.</p>
+          <button
+            class="px-3 py-1 rounded-md bg-red-300"
+            on:click={hideFlipDialogueView}>Continue learning</button
+          >
+        </div>
       </div>
     </div>
   {/if}
@@ -242,30 +247,29 @@
 
     <div class="text-center py-2">
       <div class="c-flex-center">
-        <button
-          class="c-control-pad-btn bg-gray-300 hover:bg-gray-200"
-          on:click={toggleHints}>{hintsAreOn ? "No hints" : "Hints"}</button
-        >
+        <ControlPadButton
+          label={hintsAreOn ? "No hints" : "Hints"}
+          onClick={toggleHints}
+        />
 
-        <button
-          class="c-control-pad-btn bg-gray-300 hover:bg-gray-200"
-          on:click={showThreeWords}>+3</button
-        >
+        <ControlPadButton label={"+3"} onClick={showThreeWords} />
 
-        <button
-          class="c-control-pad-btn bg-gray-300 hover:bg-gray-200"
-          on:click={toggleSpeech}>{wholeLineIsHidden ? "Show" : "Hide"}</button
-        >
+        <ControlPadButton
+          label={wholeLineIsHidden ? "Show" : "Hide"}
+          onClick={toggleSpeech}
+        />
 
-        <button
-          class="c-control-pad-btn bg-gray-300 hover:bg-gray-200"
-          on:click={goToNextLine}>=></button
-        >
+        <ControlPadButton
+          label={"=>"}
+          onClick={goToNextLine}
+          customClasses={"text-lg"}
+        />
 
-        <button
-          class="c-control-pad-btn bg-gray-300 hover:bg-gray-200"
-          on:click={showFlipDialogueView}>Flip all</button
-        >
+        <ControlPadButton
+          label={"Flip all"}
+          onClick={showFlipDialogueView}
+          styles={"padding-left: 0.5rem; padding-right: 0.5rem;"}
+        />
 
         <div class="flex flex-col content-center ml-3 leading-tight">
           <span>#{lineI + 1}</span>

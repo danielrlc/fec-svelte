@@ -1,6 +1,7 @@
 <script>
   import Header from "./Header.svelte";
   import Title from "./Title.svelte";
+  import ControlPadButton from "./ControlPadButton.svelte";
 
   export let title;
   export let sourcePhrases;
@@ -199,38 +200,32 @@
   {#if flashcardsAreShown || progressMapIsShown}
     <div class="text-center py-2">
       <div class="c-flex-center">
-        <button
-          class="c-control-pad-btn bg-gray-200 {(wholePhraseIsShown ||
-            progressMapIsShown) &&
-            'c-disabled'}"
-          on:click={toggleHints}>{hintsAreOn ? "No hints" : "Hints"}</button
-        >
+        <ControlPadButton
+          label={hintsAreOn ? "No hints" : "Hints"}
+          onClick={toggleHints}
+          customIfClasses={progressMapIsShown && "c-disabled"}
+        />
 
-        <button
-          class="c-control-pad-btn bg-gray-200 {progressMapIsShown &&
-            'c-disabled'}"
-          on:click={showThreeWords}>+3</button
-        >
+        <ControlPadButton
+          label={"+3"}
+          onClick={showThreeWords}
+          customIfClasses={progressMapIsShown && "c-disabled"}
+        />
 
-        <button
-          class="c-control-pad-btn bg-gray-200 {progressMapIsShown &&
-            'c-disabled'}"
-          on:click={togglePhrase}
-          >{wholePhraseIsHidden ? "Words" : "No words"}</button
-        >
+        <ControlPadButton
+          label={wholePhraseIsHidden ? "Words" : "No words"}
+          onClick={togglePhrase}
+          customIfClasses={progressMapIsShown && "c-disabled"}
+        />
 
-        <button
-          class="c-control-pad-btn text-lg bg-gray-200 {progressMapIsShown &&
-            'c-disabled'}"
-          on:click={goForward1}>=></button
-        >
+        <ControlPadButton
+          label={"=>"}
+          onClick={goForward1}
+          customClasses={"text-lg"}
+          customIfClasses={progressMapIsShown && "c-disabled"}
+        />
 
-        <button
-          class="c-control-pad-btn {phraseI % 10 === 9
-            ? 'bg-green-300'
-            : 'bg-gray-200'}"
-          on:click={toggleProgressMap}>Map/ Menu</button
-        >
+        <ControlPadButton label={"Map/ Menu"} onClick={toggleProgressMap} />
 
         <div class="flex flex-col content-center ml-3 leading-tight">
           <span>#{phraseI + 1}</span>
