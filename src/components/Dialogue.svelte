@@ -2,6 +2,7 @@
   import Header from "./Header.svelte";
   import Title from "./Title.svelte";
   import ControlPadButton from "./ControlPadButton.svelte";
+  import Modal from "./Modal.svelte";
 
   export let title;
   export let dialogue;
@@ -14,7 +15,7 @@
   let hintsAreOn = true;
   let introViewIsShown = true;
   let dialogueViewIsShown = false;
-  let flipDialogueViewIsShown = false;
+  let flipAllModalIsShown = false;
 
   let wordStatusStore = dialogue.map((line) =>
     line[speech].split(" ").map((_) => false)
@@ -91,12 +92,12 @@
   }
 
   function showFlipDialogueView() {
-    flipDialogueViewIsShown = true;
+    flipAllModalIsShown = true;
     dialogueViewIsDim = true;
   }
 
   function hideFlipDialogueView() {
-    flipDialogueViewIsShown = false;
+    flipAllModalIsShown = false;
     dialogueViewIsDim = false;
   }
 
@@ -189,43 +190,13 @@
     </div>
   </div>
 
-  <!-- Toggle dialogue confirm popup -->
-  {#if flipDialogueViewIsShown}
-    <div class="h-full w-full bg-gray-100 absolute z-10 px-3 py-6">
-      <div class="max-w-2xl mx-auto">
-        <div class="mb-6">
-          <h2 class="text-lg font-bold mb-1">Show dialogue</h2>
-          <p class="mb-3">
-            Show the whole dialogue if you just want to read it.
-          </p>
-          <button
-            class="px-3 py-1 rounded-md bg-green-300"
-            on:click={showDialogue}>Show dialogue</button
-          >
-        </div>
-
-        <div class="mb-6">
-          <h2 class="text-lg font-bold mb-1">Hide dialogue</h2>
-          <p class="mb-3">
-            Hide the whole dialogue if you want to start learning it from
-            scratch again.
-          </p>
-          <button
-            class="px-3 py-1 rounded-md bg-green-300"
-            on:click={hideDialogue}>Hide dialogue</button
-          >
-        </div>
-
-        <div class="mb-2">
-          <h2 class="text-lg font-bold mb-1">Continue learning</h2>
-          <p class="mb-3">Continue learning without changing anything.</p>
-          <button
-            class="px-3 py-1 rounded-md bg-red-300"
-            on:click={hideFlipDialogueView}>Continue learning</button
-          >
-        </div>
-      </div>
-    </div>
+  <!-- Flip all modal -->
+  {#if flipAllModalIsShown}
+    <Modal
+      on:showDialogue={showDialogue}
+      on:hideDialogue={hideDialogue}
+      on:cancel={hideFlipDialogueView}
+    />
   {/if}
 
   <!-- Progress bar -->
@@ -250,6 +221,7 @@
         <ControlPadButton
           label={hintsAreOn ? "No hints" : "Hints"}
           onClick={toggleHints}
+          customClasses={"px-2-imp"}
         />
 
         <ControlPadButton label={"+3"} onClick={showThreeWords} />
@@ -268,7 +240,7 @@
         <ControlPadButton
           label={"Flip all"}
           onClick={showFlipDialogueView}
-          styles={"padding-left: 0.5rem; padding-right: 0.5rem;"}
+          customClasses={"px-2-imp"}
         />
 
         <div class="flex flex-col content-center ml-3 leading-tight">
