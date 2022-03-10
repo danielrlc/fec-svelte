@@ -1,6 +1,5 @@
 <script>
   import Header from "./Header.svelte";
-  import Title from "./Title.svelte";
   import ControlPadButton from "./ControlPadButton.svelte";
   import Modal from "./Modal.svelte";
 
@@ -130,14 +129,19 @@
         <!-- Intro -->
         {#if introViewIsShown}
           <div class="px-3 u-text-ql">
+            <h1 class="text-xl font-bold mb-2 py-5 lg:px-9 leading-6">
+              {title}
+            </h1>
             <h2 class="text-xl font-bold mb-3">Instructions</h2>
             <p class="mb-4">
-              In this exercise, you can hide and show words and whole lines of
-              dialogue. Try to work out the next word or line, then show it and
-              see if you were correct. If you get it wrong, hide the word or
-              line again and come back to it a bit later.
+              Learn the dialogue by guessing the hidden words, and then checking
+              if you were correct. Leave hard-to-remember words or lines of dialogue hidden to come
+              back to later.
             </p>
-            <p class="mb-8">Repeat this process through the whole dialogue.</p>
+            <p class="mb-8">
+              Or try reading a line of dialogue, and then hiding it to see how
+              much you remember. Find out what combination works best for you.
+            </p>
             <button
               on:click={endIntro}
               class="rounded-md bg-green-300 px-8 py-1">Start</button
@@ -147,7 +151,7 @@
 
         <!-- Dialogue -->
         {#if dialogueViewIsShown}
-          <Title {title} />
+          <h1 class="text-xl font-bold mb-2 p-3 lg:px-9 leading-6">{title}</h1>
           <div class="leading-7 u-text-ql pb-8">
             {#each dialogue as line, i}
               <p

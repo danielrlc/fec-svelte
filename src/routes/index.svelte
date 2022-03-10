@@ -15,6 +15,11 @@
 
 <Header />
 
-{#each pages as { title, slug }}
-  <a class="block underline px-3 mb-4" href={slug}>{title}</a>
-{/each}
+<div class="flex justify-center u-text-ql">
+  <div class="w-800">
+    <h1 class="text-lg font-bold px-3 py-4">Exercises</h1>
+    {#each pages as { title, slug }}
+      <a class="block underline px-3 mb-1" href={slug}>{title}</a>
+    {/each}
+  </div>
+</div>

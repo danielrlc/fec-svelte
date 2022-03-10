@@ -1,6 +1,5 @@
 <script>
   import Header from "./Header.svelte";
-  import Title from "./Title.svelte";
   import ControlPadButton from "./ControlPadButton.svelte";
 
   export let title;
@@ -107,37 +106,51 @@
     <!-- Intro -->
     {#if introIsShown}
       <Header />
-      <Title {title} />
-      <p class="px-3 mb-4">Instructions will be added here.</p>
-      <button on:click={endIntro} class="mx-3 rounded-md bg-green-300 px-8 py-2"
-        >Start</button
-      >
+
+      <div class="flex justify-center">
+        <div class="w-800">
+          <h1 class="text-xl font-bold mb-2 p-3 leading-6">{title}</h1>
+          <p class="px-3 mb-4">Instructions will be added here.</p>
+          <button
+            on:click={endIntro}
+            class="mx-3 rounded-md bg-green-300 px-8 py-2">Start</button
+          >
+        </div>
+      </div>
     {/if}
 
     <!-- Progress map -->
     {#if progressMapIsShown}
       <Header />
-      <div class="px-3 mb-2">
-        <h2 class="text-xl font-bold mb-1">Progress map</h2>
-        <p class="text-sm">Review your progress and pick your next phrase.</p>
-      </div>
+      <div class="flex justify-center lg:text-center">
+        <div class="w-500">
+          <div class="p-3 mb-2">
+            <h2 class="text-xl font-bold mb-1">Progress map</h2>
+            <p class="text-sm">
+              Review your progress and pick your next phrase.
+            </p>
+          </div>
 
-      <div class="grid grid-cols-10 gap-1 p-3">
-        {#each phraseStatusStore as phraseStatus, i}
-          <button
-            class="c-flex-center h-8 rounded-md {phraseStatus === 'tolearn'
-              ? 'bg-red-300'
-              : phraseStatus === 'learning'
-              ? 'bg-yellow-300'
-              : 'bg-green-300'} {i === phraseI && 'border-4 border-gray-500'}"
-            on:click={(_) => selectPhraseFromProgressMap(i)}
-            >{phraseStatus === "tolearn"
-              ? "–"
-              : phraseStatus === "learning"
-              ? "O"
-              : "X"}</button
-          >
-        {/each}
+          <div class="grid grid-cols-10 gap-1 lg:gap-2 p-3">
+            {#each phraseStatusStore as phraseStatus, i}
+              <button
+                class="c-flex-center h-8 lg:h-10 lg:w-8 rounded-md {phraseStatus ===
+                'tolearn'
+                  ? 'bg-red-300'
+                  : phraseStatus === 'learning'
+                  ? 'bg-yellow-300'
+                  : 'bg-green-300'} {i === phraseI &&
+                  'border-4 border-gray-500'}"
+                on:click={(_) => selectPhraseFromProgressMap(i)}
+                >{phraseStatus === "tolearn"
+                  ? "–"
+                  : phraseStatus === "learning"
+                  ? "O"
+                  : "X"}</button
+              >
+            {/each}
+          </div>
+        </div>
       </div>
     {/if}
 
@@ -153,26 +166,30 @@
       />
 
       <!-- Flashcard -->
-      <div class="u-text-ql pb-8">
-        <p class="px-3 my-5 leading-6">{sourcePhrases[phraseI]}</p>
-        <hr class="mb-4" />
-        <div class="px-3 leading-7">
-          {#each targetPhrases[phraseI].split(" ") as word, i}
-            <span
-              class="cursor-pointer py-1 {i === wordI &&
-                'bg-green-200 rounded-md'}"
-              on:click={() => toggleWord(i)}
-              >{wordStatusStore[phraseI][i]
-                ? word
-                : hintsAreOn
-                ? word
-                    .split("")
-                    .map((letter, j) => (j === 0 ? letter : "_"))
-                    .join("")
-                : "_____"}
-            </span>
-            <span />
-          {/each}
+      <div class="flex justify-center">
+        <div class="w-800">
+          <div class="u-text-ql pb-8 lg:mt-8">
+            <p class="px-3 my-5 leading-6">{sourcePhrases[phraseI]}</p>
+            <hr class="mb-4" />
+            <div class="px-3 leading-7">
+              {#each targetPhrases[phraseI].split(" ") as word, i}
+                <span
+                  class="cursor-pointer py-1 {i === wordI &&
+                    'bg-green-200 rounded-md'}"
+                  on:click={() => toggleWord(i)}
+                  >{wordStatusStore[phraseI][i]
+                    ? word
+                    : hintsAreOn
+                    ? word
+                        .split("")
+                        .map((letter, j) => (j === 0 ? letter : "_"))
+                        .join("")
+                    : "_____"}
+                </span>
+                <span />
+              {/each}
+            </div>
+          </div>
         </div>
       </div>
     {/if}
@@ -186,7 +203,7 @@
     >
       {#each phraseStatusStore as phraseStatus, i}
         <span
-          class="h-2 {phraseStatus === 'tolearn'
+          class="h-2 lg:h-3 {phraseStatus === 'tolearn'
             ? 'bg-red-300'
             : phraseStatus === 'learning'
             ? 'bg-yellow-300'
@@ -213,7 +230,7 @@
         />
 
         <ControlPadButton
-          label={wholePhraseIsHidden ? "Words" : "No words"}
+          label={wholePhraseIsHidden ? "Show" : "Hide"}
           onClick={togglePhrase}
           customIfClasses={progressMapIsShown && "c-disabled"}
         />
