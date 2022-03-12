@@ -14,7 +14,7 @@
 <div class="flex justify-center">
   <div class="w-[800px] px-3 text-[1.1rem] mb-16">
     <Title title="#3 - Five Finnish friends take a sauna" />
-    <p class="mb-3">
+    <p class="mb-3 italic">
       <a
         class="text-blue-700 underline"
         href="https://en.wikipedia.org/wiki/Arthur_Dent">Arthur Dent</a
@@ -23,7 +23,7 @@
       evening after work. The conversation flowed as they discussed the pressing
       issues of the day.
     </p>
-    <p class="mb-8">Let's pick up the conversation halfway through...</p>
+    <p class="mb-8 italic">Let's pick up the conversation halfway through...</p>
 
     {#if !dialogueIsShown}
       <button
