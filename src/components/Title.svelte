@@ -1,5 +1,6 @@
 <script>
   export let title;
+  export let customClasses=""
 </script>
 
-<h1 class="text-xl font-bold mb-2 p-3 lg:px-9 leading-6">{title}</h1>
+<h1 class="text-xl font-bold mb-6 leading-6 {customClasses}">{title}</h1>

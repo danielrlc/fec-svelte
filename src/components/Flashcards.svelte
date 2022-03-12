@@ -108,7 +108,7 @@
       <Header />
 
       <div class="flex justify-center">
-        <div class="w-800">
+        <div class="w-[800px]">
           <h1 class="text-xl font-bold mb-2 p-3 leading-6">{title}</h1>
           <p class="px-3 mb-4">Instructions will be added here.</p>
           <button
@@ -123,7 +123,7 @@
     {#if progressMapIsShown}
       <Header />
       <div class="flex justify-center lg:text-center">
-        <div class="w-500">
+        <div class="w-[500px]">
           <div class="p-3 mb-2">
             <h2 class="text-xl font-bold mb-1">Progress map</h2>
             <p class="text-sm">
@@ -167,8 +167,8 @@
 
       <!-- Flashcard -->
       <div class="flex justify-center">
-        <div class="w-800">
-          <div class="u-text-ql pb-8 lg:mt-8">
+        <div class="w-[800px]">
+          <div class="text-[1.1rem] pb-8 lg:mt-8">
             <p class="px-3 my-5 leading-6">{sourcePhrases[phraseI]}</p>
             <hr class="mb-4" />
             <div class="px-3 leading-7">

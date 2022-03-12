@@ -1,5 +1,6 @@
 <script>
   import Header from "./Header.svelte";
+  import Title from "./Title.svelte";
   import ControlPadButton from "./ControlPadButton.svelte";
   import Modal from "./Modal.svelte";
 
@@ -120,23 +121,21 @@
   }
 </script>
 
-<div class="flex flex-col h-full">
+<div class="flex h-full flex-col">
   <div class="flex-grow overflow-auto">
     <Header />
 
     <div class="flex justify-center">
-      <div class="max-w-2xl">
+      <div class="w-[800px]">
         <!-- Intro -->
         {#if introViewIsShown}
-          <div class="px-3 u-text-ql">
-            <h1 class="text-xl font-bold mb-2 py-5 lg:px-9 leading-6">
-              {title}
-            </h1>
-            <h2 class="text-xl font-bold mb-3">Instructions</h2>
+          <div class="px-3 text-[1.1rem]">
+            <Title {title} />
+            <h2 class="mb-3 text-xl font-bold">Instructions</h2>
             <p class="mb-4">
               Learn the dialogue by guessing the hidden words, and then checking
-              if you were correct. Leave hard-to-remember words or lines of dialogue hidden to come
-              back to later.
+              if you were correct. Leave hard-to-remember words or lines of
+              dialogue hidden to come back to later.
             </p>
             <p class="mb-8">
               Or try reading a line of dialogue, and then hiding it to see how
@@ -151,11 +150,11 @@
 
         <!-- Dialogue -->
         {#if dialogueViewIsShown}
-          <h1 class="text-xl font-bold mb-2 p-3 lg:px-9 leading-6">{title}</h1>
-          <div class="leading-7 u-text-ql pb-8">
+          <Title {title} customClasses="px-3" />
+          <div class="pb-8 text-[1.1rem] leading-7">
             {#each dialogue as line, i}
               <p
-                class="pl-2 pr-3 lg:px-8 py-1 my-1 border-l-4 {speechStatusStore[
+                class="my-1 border-l-4 py-1 pl-2 pr-3 lg:px-8 {speechStatusStore[
                   i
                 ] === 'tolearn'
                   ? 'border-red-300'
@@ -165,14 +164,14 @@
               >
                 <span
                   on:click={() => selectLine(i)}
-                  class="font-bold cursor-pointer"
+                  class="cursor-pointer font-bold"
                   >{line[speaker]}:
                 </span>
                 {#each line[speech].split(" ") as word, j}
                   <span
                     class="cursor-pointer py-1 {i === lineI &&
                       j === wordI &&
-                      'bg-green-200 rounded-md'}"
+                      'rounded-md bg-green-200'}"
                     on:click={() => toggleWord(i, j)}
                     >{wordStatusStore[i][j]
                       ? word
@@ -220,15 +219,15 @@
       {/each}
     </div>
 
-    <div class="text-center py-2">
+    <div class="py-2 text-center">
       <div class="c-flex-center">
         <ControlPadButton
           label={hintsAreOn ? "No hints" : "Hints"}
           onClick={toggleHints}
-          customClasses={"px-2-imp"}
+          customClasses="!px-2"
         />
 
-        <ControlPadButton label={"+3"} onClick={showThreeWords} />
+        <ControlPadButton label="+3" onClick={showThreeWords} />
 
         <ControlPadButton
           label={wholeLineIsHidden ? "Show" : "Hide"}
@@ -236,18 +235,18 @@
         />
 
         <ControlPadButton
-          label={"=>"}
+          label="=>"
           onClick={goToNextLine}
-          customClasses={"text-lg"}
+          customClasses="text-lg"
         />
 
         <ControlPadButton
-          label={"Flip all"}
+          label="Flip all"
           onClick={showFlipDialogueView}
-          customClasses={"px-2-imp"}
+          customClasses="!px-2"
         />
 
-        <div class="flex flex-col content-center ml-3 leading-tight">
+        <div class="ml-3 flex flex-col content-center leading-tight">
           <span>#{lineI + 1}</span>
           <span>{progress}%</span>
         </div>
