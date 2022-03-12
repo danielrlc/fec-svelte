@@ -23,7 +23,7 @@
       evening after work. The conversation flowed as they discussed the pressing
       issues of the day.
     </p>
-    <p class="mb-8">Let's pick up the conversation halfway through.</p>
+    <p class="mb-8">Let's pick up the conversation halfway through...</p>
 
     {#if !dialogueIsShown}
       <button
