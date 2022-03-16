@@ -168,7 +168,7 @@
       <!-- Flashcard -->
       <div class="flex justify-center">
         <div class="w-[800px]">
-          <div class="text-[1.1rem] pb-8 lg:mt-8">
+          <div class="text-lg pb-8 lg:mt-8">
             <p class="px-3 my-5 leading-6">{sourcePhrases[phraseI]}</p>
             <hr class="mb-4" />
             <div class="px-3 leading-7">
@@ -198,7 +198,7 @@
   <!-- Progress bar -->
   {#if flashcardsAreShown || progressMapIsShown}
     <div
-      class="grid border-y border-gray-500"
+      class="grid"
       style="grid-template-columns: repeat({phraseCount}, 1fr);"
     >
       {#each phraseStatusStore as phraseStatus, i}
