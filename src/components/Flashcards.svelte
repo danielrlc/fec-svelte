@@ -168,10 +168,10 @@
       <!-- Flashcard -->
       <div class="flex justify-center">
         <div class="w-[800px]">
-          <div class="text-lg pb-8 lg:mt-8">
-            <p class="px-3 my-5 leading-6">{sourcePhrases[phraseI]}</p>
+          <div class="text-2xl pb-8 lg:mt-8">
+            <p class="px-3 my-5 leading-tight">{sourcePhrases[phraseI]}</p>
             <hr class="mb-4" />
-            <div class="px-3 leading-7">
+            <div class="px-3 leading-relaxed">
               {#each targetPhrases[phraseI].split(" ") as word, i}
                 <span
                   class="cursor-pointer py-1 {i === wordI &&
