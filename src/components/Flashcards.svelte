@@ -168,7 +168,7 @@
       <!-- Flashcard -->
       <div class="flex justify-center">
         <div class="w-[800px]">
-          <div class="text-2xl pb-8 lg:mt-8">
+          <div class="text-xl pb-8 lg:mt-8">
             <p class="px-3 my-5 leading-tight">{sourcePhrases[phraseI]}</p>
             <hr class="mb-4" />
             <div class="px-3 leading-relaxed">

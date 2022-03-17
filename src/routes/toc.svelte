@@ -8,11 +8,11 @@
     },
     {
       title: "#2 - Ohjelmaa aamusta iltaan (p47)",
-      slug: "p47",
+      slug: "p2",
     },
     {
       title: "#3 - Hei Hanna! Tänään alkaa Helsinki-viikko! (p48)",
-      slug: "p48",
+      slug: "p3",
     },
   ];
 </script>
