@@ -24,10 +24,10 @@
       `Siksi mä haluaisin nähdä tän.`,
       `Okei, sopii mulle.`,
       `Täytyy varmaan mennä ajoissa, et saadaan hyvät paikat.`,
-      `Hey Hanna!`,
     ],
 
     sourcePhrases: [
+      `Hey Hanna!`,
       `Helsinki Week starts today!`,
       `Let's go see a show!`,
       `Yeah, let's just go.`,
