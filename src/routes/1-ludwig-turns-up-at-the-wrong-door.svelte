@@ -4,6 +4,9 @@
   const content = {
     title: "#1 - Ludwig turns up at the wrong door",
 
+    preamble:
+      "In October 1911, Ludwig Wittgenstein turned up unannounced and out of the blue at Bertrand Russell's door in Cambridge. But what happened five minutes earlier? Let's find out.",
+
     dialogue: [
       [`John`, `Hello. Can I help you?`],
       [`Ludwig`, `Are you Bertrand Russell, the greatest thinker of the age?`],

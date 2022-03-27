@@ -5,6 +5,7 @@
   import Modal from "./Modal.svelte";
 
   export let title;
+  export let preamble;
   export let dialogue;
 
   let speaker = 0;
@@ -151,6 +152,11 @@
         <!-- Dialogue -->
         {#if dialogueViewIsShown}
           <Title {title} customClasses="px-3" />
+
+          {#if preamble}
+            <p class="px-3 mb-6 italic">{preamble}</p>
+          {/if}
+
           <div class="pb-8 text-[1.1rem] leading-7">
             {#each dialogue as line, i}
               <p
