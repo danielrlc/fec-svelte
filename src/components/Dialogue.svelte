@@ -133,20 +133,32 @@
         {#if introViewIsShown}
           <div class="px-3 text-[1.1rem]">
             <Title {title} />
-            <h2 class="mb-3 text-xl font-bold">Instructions</h2>
-            <p class="mb-4">
-              Learn the dialogue by guessing the hidden words, and then checking
-              if you were correct. Leave hard-to-remember words or lines of
-              dialogue hidden to come back to later.
-            </p>
-            <p class="mb-8">
-              Or try reading a line of dialogue, and then hiding it to see how
-              much you remember. Find out what combination works best for you.
+
+            <h2 class="mb-3 text-xl font-bold">Quick start</h2>
+            <p class="c-p mb-5">
+              Learn the dialogue by guessing the hidden words, and then
+              revealing them to check if you were correct.
             </p>
             <button
               on:click={endIntro}
-              class="rounded-md bg-green-300 px-8 py-1">Start</button
+              class="mb-10 rounded-md bg-green-300 px-8 py-1">Start</button
             >
+
+            <h2 class="mb-3 text-xl font-bold">Learning tips</h2>
+            <p class="c-p">
+              Turn on the hints to help you learn a new sentence.
+            </p>
+            <p class="c-p">
+              Reveal the sentence a word at a time, three words at a time, or
+              all at once.
+            </p>
+            <p class="c-p">
+              Leave hard-to-remember words hidden to come back to later.
+            </p>
+            <p class="c-p">
+              Read a line of dialogue, then hide it and see how much you
+              remember.
+            </p>
           </div>
         {/if}
 

@@ -28,6 +28,10 @@
     @apply pointer-events-none opacity-25;
   }
 
+  .c-p {
+    @apply mb-3;
+  }
+
   .c-link {
     @apply underline text-blue-700;
   }
