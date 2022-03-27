@@ -5,6 +5,7 @@
   import Modal from "./Modal.svelte";
 
   export let title;
+  export let blogPostUrl;
   export let preamble;
   export let dialogue;
 
@@ -153,8 +154,14 @@
         {#if dialogueViewIsShown}
           <Title {title} customClasses="px-3" />
 
+          {#if blogPostUrl}
+            <p class="mb-4 px-3">
+              <a class="c-link" href={blogPostUrl}>Read the text on the blog</a>
+            </p>
+          {/if}
+
           {#if preamble}
-            <p class="px-3 mb-6 italic">{preamble}</p>
+            <p class="mb-4 px-3 italic">{preamble}</p>
           {/if}
 
           <div class="pb-8 text-[1.1rem] leading-7">

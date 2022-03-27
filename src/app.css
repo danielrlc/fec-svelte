@@ -27,4 +27,8 @@
   .c-disabled {
     @apply pointer-events-none opacity-25;
   }
+
+  .c-link {
+    @apply underline text-blue-700;
+  }
 }

@@ -22,8 +22,12 @@
 <div class="flex justify-center text-[1.1rem]">
   <div class="w-[800px]">
     <h1 class="mb-4 px-3 text-lg font-bold">Exercises</h1>
-    {#each pages as { title, slug }}
-      <a class="mb-1 block px-3 underline" href={slug}>{title}</a>
-    {/each}
+    <ul>
+      {#each pages as { title, slug }}
+        <li class="px-3">
+          <a class="c-link" href={slug}>{title}</a>
+        </li>
+      {/each}
+    </ul>
   </div>
 </div>

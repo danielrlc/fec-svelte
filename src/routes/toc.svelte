@@ -27,7 +27,7 @@
   <div class="w-[800px]">
     <h1 class="mb-4 px-3 text-lg font-bold">Exercises</h1>
     {#each toc as { title, slug }}
-      <a class="mb-1 block px-3 underline" href={slug}>{title}</a>
+      <a class="c-link" href={slug}>{title}</a>
     {/each}
   </div>
 </div>
