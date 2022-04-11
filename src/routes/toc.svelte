@@ -18,6 +18,10 @@
       title: `#4 - Taidenäyttelyssä (p50)`,
       slug: `s4`,
     },
+    {
+      title: `#5 - Kauas pilvet karkaavat (p59)`,
+      slug: `s5`,
+    },
   ];
 </script>
 
@@ -26,8 +30,12 @@
 <div class="flex justify-center text-[1.1rem]">
   <div class="w-[800px]">
     <h1 class="mb-4 px-3 text-lg font-bold">Exercises</h1>
-    {#each toc as { title, slug }}
-      <a class="c-link" href={slug}>{title}</a>
-    {/each}
+    <ul>
+      {#each toc as { title, slug }}
+        <li class="px-3">
+          <a class="c-link" href={slug}>{title}</a>
+        </li>
+      {/each}
+    </ul>
   </div>
 </div>
